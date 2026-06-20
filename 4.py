@@ -68,6 +68,17 @@ else:
   print(f"\nNo path found from {start} to {goal}")
   
   
+class Node:
+  def __init__(self, name, g_cost, h_cost, parent=None):
+    self.name = name
+    self.g_cost = g_cost
+    self.h_cost = h_cost
+    self.f_cost = g_cost + h_cost
+    self.parent = parent
+
+  def __lt__(self, other):
+    return self.f_cost < other.f_cost
+
 def a_star_search(graph, costs, start, goal, heuristic_values):
   open_list = []
   closed_list = set()
